@@ -22,6 +22,12 @@ The Industrial Multi-Sensor Early Warning & Protection System is an ESP32-based 
 6. 16x2 I2C LCD Display
 7. LED Indicators
 8. Jumper Wires and Breadboard
+9. **ESP32 MCU:** Core processing edge node.
+* **MPU6050:** 3-axis accelerometer for physical vibration detection.
+* **DHT22:** High-precision digital temperature monitoring.
+* **16x2 LCD (I2C):** Real-time operator telemetry dashboard.
+* **Relay Module:** Industrial emergency load shedding/contactor trip simulator.
+* **Piezo Buzzer & LED:** Localized audio/visual alarms.
 
 ## Working Principle
 1. ESP32 initializes all sensors and peripherals.
@@ -35,6 +41,13 @@ The Industrial Multi-Sensor Early Warning & Protection System is an ESP32-based 
    - Buzzer generates an alarm.
    - LCD displays fault information.
 6. When parameters return to normal, the system automatically resumes monitoring.
+7. 1. **Baseline Calibration:** Captures resting forces at boot-up to filter out ambient room floor noise.
+2. **Euclidean Vector Calculus:** Processes 3D acceleration shifts to gauge true dynamic vibration magnitude:
+   $$\text{Vibration Magnitude} = \sqrt{\Delta X^2 + \Delta Y^2 + \Delta Z^2}$$
+3. **Failsafe Filtering:** Discards corrupted sensor packets using data validation checks (`isnan()`).
+4. **Automatic Isolation:** Instantly trips the hardware relay, activates a $1000\text{Hz}$ siren, and locks down the machine if vibration passes **2.50 m/s²** or temperature exceeds **60°C**.
+
+---
 
 ## Features
 - Real-time monitoring
