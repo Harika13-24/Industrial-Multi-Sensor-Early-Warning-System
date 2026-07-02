@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -336, "left": 830.44, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": -255.38, "left": 491.92, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -287.7, "left": 1223.4, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 6.4,
+      "left": 744.8,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -527.8, "left": 806.4, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 21.6,
+      "left": 1230.6,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "imu1:VCC", "esp:3V3", "red", [ "v-57.6", "h134.48", "v57.6" ] ],
+    [ "imu1:SDA", "esp:21", "green", [ "v144", "h451.28", "v-153.6" ] ],
+    [ "imu1:SCL", "esp:22", "green", [ "v-115.2", "h499.28", "v76.8" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h-67.2", "v-115.2", "h326.4", "v-278.4", "h-76.8" ] ],
+    [ "imu1:GND", "esp:GND.3", "black", [ "v-96", "h422.48", "v96" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h326.4", "v-316.6" ] ],
+    [ "lcd1:SCL", "esp:22", "green", [ "h-86.4", "v-354.9" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-38.4", "v-182.3" ] ],
+    [ "relay1:IN", "esp:12", "green", [ "h-48", "v297.4" ] ],
+    [ "esp:GND.1", "relay1:GND", "black", [ "h-47.85", "v-316.4" ] ],
+    [ "relay1:VCC", "esp:5V", "red", [ "h-76.8", "v374.4" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "h-28.8", "v-230.4", "h-374.55" ] ],
+    [ "dht1:SDA", "esp:4", "green", [ "v19.2", "h-297.5", "v-38.4" ] ],
+    [ "dht1:GND", "esp:GND.2", "black", [ "v19.2", "h48", "v-153.6" ] ],
+    [
+      "bz1:1",
+      "esp:GND.1",
+      "green",
+      [ "v28.8", "h-67.2", "v-192", "h-441.6", "v-124.8", "h86.25" ]
+    ],
+    [ "bz1:2", "esp:13", "green", [ "v96", "h-682", "v-374.4" ] ]
+  ],
+  "dependencies": {}
+}
