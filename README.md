@@ -99,3 +99,6 @@ Harika. Nenavath
  B.Tech (23UEE137)   
 Department of Electrical Engineering  
 National Institute of Technology Agartala
+
+## 🚀 Live Simulation
+You can run and test this project directly in your browser here: [Launch Wokwi Simulation](https://wokwi.com/projects/468332447408509953)
